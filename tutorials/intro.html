@@ -59,82 +59,82 @@
       </aside>
 
       <section>
-      <h3>Setting up</h3>
-      <p>
-      Import the Javascript CHAOS.Portal Client into your site.
-      </p>
-
-      <aside class="code">
-      <pre><code class="language-html">&lt;script src="CHAOS.Portal.Client.PortalClient.js" type="text/javascript"&gt;&lt;/script&gt;</code></pre>
-      </aside>
-
-      <aside class="note">
+        <h3>Setting up</h3>
         <p>
-          All following code examples will be Javascript code, and should be
-          included in your page between
-          <code>&lt;script&gt;&lt;/script&gt;</code> tags or otherwise imported
-          as Javascript into your site.
+          Import the Javascript CHAOS.Portal Client into your site.
         </p>
-      </aside>
 
-      <p>
-        The first thing we need to do is to instantiate the client.
-      </p>
+        <aside class="code">
+          <pre><code class="language-html">&lt;script src="CHAOS.Portal.Client.PortalClient.js" type="text/javascript"&gt;&lt;/script&gt;</code></pre>
+        </aside>
 
-      <aside class="code">
-      <pre><code id="setup" class="language-javascript">// Setup settings
-var ChaosSettings = {
-  "servicePath":"http://api.chaos-systems.com/",
-  "clientGUID":"9f62060c-64ff-e14f-a8d5-d85a1e2e21b8",
-  "accessPointGUID":"C4C2B8DA-A980-11E1-814B-02CEA2621172",
-};
-// Instantiate client
-var client = new PortalClient(
-                   ChaosSettings.servicePath,
-                   ChaosSettings.clientGUID
-                 );</code></pre>
-      </aside>
+        <aside class="note">
+          <p>
+            All following code examples will be Javascript code, and should be
+            included in your page between
+            <code>&lt;script&gt;&lt;/script&gt;</code> tags or otherwise imported
+            as Javascript into your site.
+          </p>
+        </aside>
 
-      <!-- http://html5doctor.com/the-dl-element/ -->
-      <dl>
-        <dt><code>servicePath</code></dt>
-        <dd>is the URL at which your CHAOS.Portal is set up.</dd>
-        <dt><code>clientGUID</code></dt>
-        <dd> should be unique for each application, any GUID can be used.</dd>
-        <dt><code>accessPointGUID</code></dt>
-        <dd>is an ID that authenticates us to use the CHAOS.Portal. This
-        should be given to you by your friendly neighbourhood CHAOS.Portal
-        administrator.</dd>
-      </dl>
+        <p>
+          The first thing we need to do is to instantiate the client.
+        </p>
 
-      <p> Instantiating the <code>PortalClient</code> this way automatically
-      sets up a session. When the session has been set up we are ready to use
-      the CHAOS.Portal.<br>
-      <br>
-      We can add callbacks to <code>PortalClient.SessionAcquired()</code> in
-      order to do work when the session has been set up:
-      <!-- Next we need to set up a session. Session are for logging in with some -->
-      <!-- user on the CHAOS.Portal server and thereby authenticating yourself with the -->
-      <!-- server. In this case we don't need to login, and a session is automatically -->
-      <!-- created for us. -->
+        <aside class="code">
+        <pre><code id="setup" class="language-javascript">// Setup settings
+  var ChaosSettings = {
+    "servicePath":"http://api.chaos-systems.com/",
+    "clientGUID":"9f62060c-64ff-e14f-a8d5-d85a1e2e21b8",
+    "accessPointGUID":"C4C2B8DA-A980-11E1-814B-02CEA2621172",
+  };
+  // Instantiate client
+  var client = new PortalClient(
+                     ChaosSettings.servicePath,
+                     ChaosSettings.clientGUID
+                   );</code></pre>
+        </aside>
 
-      <!-- When the session is created, we are ready to grab objects from the CHAOS -->
-      <!-- server. We can add event handlers to the SessionAcquired() event &#45; these -->
-      <!-- will be called when a session has been set up for us. -->
-      </p>
+        <!-- http://html5doctor.com/the-dl-element/ -->
+        <dl>
+          <dt><code>servicePath</code></dt>
+          <dd>is the URL at which your CHAOS.Portal is set up.</dd>
+          <dt><code>clientGUID</code></dt>
+          <dd> should be unique for each application, any GUID can be used.</dd>
+          <dt><code>accessPointGUID</code></dt>
+          <dd>is an ID that authenticates us to use the CHAOS.Portal. This
+          should be given to you by your friendly neighbourhood CHAOS.Portal
+          administrator.</dd>
+        </dl>
 
-      <aside class="code">
-      <pre><code class="language-javascript eval">client.SessionAcquired().Add(function(sender, sessionGUID) {
-  alert("Session created: " + sessionGUID);
-});</code></pre>
-<!--       <pre><code class="language&#45;javascript">setTimeout(function() { -->
-<!--   client.SessionAcquired().Add(function(sender, sessionGUID) { -->
-<!--     alert("Session created: " + sessionGUID); -->
-<!--   }); -->
-<!-- }, 2000);</code></pre> -->
-      </aside>
+        <p> Instantiating the <code>PortalClient</code> this way automatically
+        sets up a session. When the session has been set up we are ready to use
+        the CHAOS.Portal.<br>
+        <br>
+        We can add callbacks to <code>PortalClient.SessionAcquired()</code> in
+        order to do work when the session has been set up:
+        <!-- Next we need to set up a session. Session are for logging in with some -->
+        <!-- user on the CHAOS.Portal server and thereby authenticating yourself with the -->
+        <!-- server. In this case we don't need to login, and a session is automatically -->
+        <!-- created for us. -->
 
-      <p>Now we are ready to get some objects!</p>
+        <!-- When the session is created, we are ready to grab objects from the CHAOS -->
+        <!-- server. We can add event handlers to the SessionAcquired() event &#45; these -->
+        <!-- will be called when a session has been set up for us. -->
+        </p>
+
+        <aside class="code">
+        <pre><code class="language-javascript eval">client.SessionAcquired().Add(function(sender, sessionGUID) {
+    alert("Session created: " + sessionGUID);
+  });</code></pre>
+  <!--       <pre><code class="language&#45;javascript">setTimeout(function() { -->
+  <!--   client.SessionAcquired().Add(function(sender, sessionGUID) { -->
+  <!--     alert("Session created: " + sessionGUID); -->
+  <!--   }); -->
+  <!-- }, 2000);</code></pre> -->
+        </aside>
+
+        <p>Now we are ready to get some objects!</p>
       </section>
 
       <section>
