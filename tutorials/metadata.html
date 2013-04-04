@@ -54,7 +54,8 @@
       <section>
       <h3>Grabbing a single object</h3>
       <p>In many cases it will makes sense to only request a single known object.
-      Objects are identified by their GUID:</p>
+      Objects are identified by their GUID, and can be retrieved with
+      <code>PortalClient.Object_GetByObjectGUID()</code>:</p>
 
       <aside class="code">
       <pre><code class="language-javascript eval">// Retrieve object
@@ -82,7 +83,9 @@ function showObject(serviceResult) {
       <h3>Files</h3>
       <p>
       Files belonging to an object can be of different types -- video, audio,
-      images and basically any other kind of file.
+      images and basically any other kind of file. The files can be found in the
+      <code>Files</code> attribute of the objects in
+      <code>serviceResult.MCM().Results()</code>:
       </p>
 
 
@@ -152,19 +155,21 @@ function showObject(serviceResult) {
       These are questions for the metadata.<br>
       <!-- This is all in the metadata -->
       <!--What I'm saying here is that your-->
-      The CHAOS database can be filled all kinds of objects. What kind of
+      The CHAOS database can be filled with all kinds of objects. What kind of
       objects should be known to you when you start working with your CHAOS
-      database or it should be documented in some place known to you.<br>
+      database – or it should be documented someplace known to you.<br>
       <span class="important">The metadata of an object is a list of XML
-        documents with related XML schemas</span>. Again I recommend that you
-      know the structure of these document before you begin, if you want
-      anything meaningful out them.<br>
+        documents with related XML schemas</span>. I recommend that you
+      know the structure of these documents before you begin. In this case
+      we're just experimenting and getting to know the interface - so
+      let's have a look. The metadata can be found in the
+      <code>Metadatas</code> attribute of the objects in
+      <code>serviceResult.MCM().Results()</code>:
       <!--Now just to be clear metadata is <emph>just</emph> metadata. What is
       contained in that metadata is basically up to the people who the object in
       to the database and it could be anything - as a general rule the structure
       and content of such metadata should be known to you already or documented
       someplace you know.-->
-      Let's have a look:
       </p>
 
       <aside class="code">

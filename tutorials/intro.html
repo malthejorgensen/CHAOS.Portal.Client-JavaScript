@@ -141,7 +141,8 @@ var client = new PortalClient(
       <h3>Searching</h3>
       <p>
         The easiest way to retrieve some objects from a CHAOS database is to
-        search.
+        search. You can do this with the function
+        <code>PortalClient.Object_GetBySearch()</code>:
       </p>
 
       <aside class="code">
@@ -203,14 +204,17 @@ function showObjects(serviceResult) {
       </p>
 
       <dl>
-        <dt><code>serviceResult.MCM().TotalCount()</code></dt>
-        <dd>The number of objects that matched the query</dd>
+        <dt><code>serviceResult.MCM().Results()</code></dt>
+        <dd>The result of the CHAOS query: A list of objects (URL, metadata
+        etc.). An explaination of these objects is found in the next section.</dd>
         <dt><code>serviceResult.MCM().Count()</code></dt>
-        <dd>The number of objects on this page: These are the objects available
-        to you in the serviceResult.<br>
+        <dd>The number of objects on this page, i.e. the number of  objects available
+        to you in the <code>serviceResult.MCM().Results()</code>.<br>
         If you want all the objects from a query at
         once you will have to increase the <code>pageSize</code> or go through
         all pages via <code>pageIndex</code>.</dd>
+        <dt><code>serviceResult.MCM().TotalCount()</code></dt>
+        <dd>The number of objects that matched the query</dd>
       </dl>
 
 
