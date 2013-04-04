@@ -26,17 +26,6 @@ $(document).ready(function(event) {
     line_count = setup_code.split("\n").length + 1;
   }
 
-
-  // $('aside.code pre code[id!="setup"].language-javascript').each(function() {
-  $('aside.code pre code.language-javascript').each(function() {
-    var pre = $(this).parent();
-    var code = $(this).html();
-
-    // If this code can be evaluated
-
-
-  });
-
   $('aside.code pre code').each(function() {
     var pre = $(this).parent();
     var code = $(this).html();
@@ -53,16 +42,18 @@ $(document).ready(function(event) {
     codeElem = $(this).clone();
 
     // Make CodeMirror
-    pre.replaceWith('<textarea>' + code + '</textarea>');
-    var textarea = aside.children('textarea').get(0);
-    var codeMirror = CodeMirror.fromTextArea(textarea, CodeMirrorSettings);
+    var textarea = $('<textarea>' + code + '</textarea>');
+    pre.replaceWith(textarea);
+    // var textarea = aside.children('textarea').get(0);
+    var codeMirror = CodeMirror.fromTextArea(textarea.get(0), CodeMirrorSettings);
+    aside.attr('id', codeElem.attr('id'));
     aside.data('codeMirror', codeMirror);
 
     // Setup CodeMirror
     if (codeElem.hasClass('language-html')) {
       codeMirror.setOption('mode', 'htmlmixed');
     } else if (codeElem.hasClass('language-json')) {
-      codeMirror.setOption('mode', { name: 'javascript', json: true });
+      codeMirror.setOption('mode', { 'name': 'javascript', 'json': true });
     } else if (codeElem.hasClass('language-javascript')) {
       codeMirror.setOption('mode', 'javascript');
 
@@ -71,7 +62,7 @@ $(document).ready(function(event) {
 
         // Add Javascript evaluate button
         var codeButton = $('<div class="try-code"><button>Try!<\/button><\/div>');
-        codeButton.children('button').click(codeEval(codeMirror));
+        codeButton.children('button').click(codeEval(codeMirror, setup_code));
         aside.append(codeButton);
       }
     }
@@ -79,10 +70,16 @@ $(document).ready(function(event) {
 
 });
 
-function codeEval(codeMirror) {
+function codeEval(codeMirror, setup_code) {
   return function(event) {
     var code = codeMirror.getValue();
-    //console.log(code);
+
+    // http://aaronrussell.co.uk/legacy/check-if-an-element-exists-using-jquery/
+    if ($('#setup.code').length > 0) {
+      setup_code = $('#setup.code').data('codeMirror').getValue();
+    }
+
+    // console.log(setup_code + code);
     eval(setup_code + code);
   };
 }
